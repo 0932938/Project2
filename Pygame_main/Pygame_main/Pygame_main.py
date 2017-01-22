@@ -33,15 +33,17 @@ def text_objects(text, font):
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects(text, largeText)
-    TextRect.center = ((display_width/2),(display_height/2))
+    TextRect.center = ((width/2),(height/2))
     screen.blit(TextSurf, TextRect)
  
     pygame.display.update()
  
     time.sleep(2)
  
+
 #buttons 
 def button(msg,x,y,w,h,ic,ac,action=None):
+    Csound = pygame.mixer.Sound("moving cursor.wav")
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     print(click)
@@ -49,6 +51,8 @@ def button(msg,x,y,w,h,ic,ac,action=None):
         pygame.draw.rect(screen, ac,(x,y,w,h))
         
         if click[0] == 1 and action != None:
+            Csound.play()
+            pygame.time.delay(1000)
             action()   
                   
     else:
@@ -62,6 +66,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
 def quitgame():
     pygame.quit()
     quit()
+
 
 #main menu
 def game_intro():
@@ -90,12 +95,7 @@ def game_intro():
 
 
 def previous():
-    key = pygame.key.get_pressed()
-    if button("<",940,40,50,50,black,(80,80,80),None) == True:
-        button.action = key[pygame.K_RIGHT]
-        
-
-    
+    None 
 
 #insturction page
 def instructies():
@@ -103,9 +103,7 @@ def instructies():
     done = False
     display_instructions = True
     instruction_page = 1
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-    print(click)
+
     # LOOP INSTRUCTIEPAGINA
     while not done and display_instructions:
         for event in pygame.event.get():
@@ -142,15 +140,12 @@ def instructies():
             instruc3 = pygame.transform.scale(instruc3, (size))
             screen.blit(instruc3,(0,0))        
 
-
         button("<",940,40,50,50,black,(80,80,80),None)
         button(">",1170,40,50,50,black,(80,80,80), None)
         button("Back To menu",1000,40,160,50,black,(80,80,80),game_intro)
 
         # Go ahead and update the screen with what we've drawn.        
         pygame.display.flip()
-    
-
     
 
 game_intro()

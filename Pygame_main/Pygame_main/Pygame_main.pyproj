@@ -26,6 +26,7 @@
     <Compile Include="Pygame_main.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cursor_Move.mp3" />
     <Content Include="euromast_wallpaper_v2.jpg" />
   </ItemGroup>
   <PropertyGroup>
