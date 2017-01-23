@@ -81,36 +81,40 @@ def roll_a_dice():
 
 # determines which first dice is used
 def display_first(first):
-    Rsound = pygame.mixer.Sound("Final Fantasy VII Sound Effects - Cursor Ready.wav")
+
     if (first == "open"):
         screen.blit(Open_vraag,(0,0))
         pygame.display.flip()
+        produce_button_message("Klik Doorgaan", 575,250)
+        produce_button_message2("Type vraag", 615,152) 
         button("Doorgaan", 423,520,458,32,yellow,gold, Select_Catagory)
     elif (first == "meerkeuze"):
         screen.blit(Meerkeu_vraag,(0,0))
         pygame.display.flip()
+        produce_button_message("Klik Doorgaan", 575,250)
+        produce_button_message2("Type vraag", 615,152) 
         button("Doorgaan", 423,520,458,32,yellow,gold, Select_Catagory)
         
        
 # tells the user how to roll
 def produce_button_message(text, x, y):
-    our_font = pygame.font.SysFont("monospace", 15)
+    our_font = pygame.font.SysFont("Arial black", 20)
     #render the text now
-    produce_text = our_font.render(text, 1, red)
+    produce_text = our_font.render(text, 1, black)
     screen.blit(produce_text, (x, y))
 
-# produce the roll results (in text)
-def produce_roll_message(text, x, y):
-    our_font = pygame.font.SysFont("monospace", 15)
-    #render the text now. 1 refers to aliasing.
-    produce_text = our_font.render(text, 1, red)
-    screen.blit(produce_text, (x,y))
+def produce_button_message2(text, x, y):
+    our_font = pygame.font.SysFont("Arial black", 15)
+    #render the text now
+    produce_text = our_font.render(text, 1, black)
+    screen.blit(produce_text, (x, y))
 
 # our roll will display message with our roll converted to text form, alongside
 def before_roll():
     blank_popup = pygame.image.load('empty_popup.png')
     screen.blit(blank_popup,(0,0))
-    produce_button_message("Please press roll to roll you dice", 540,280)
+    produce_button_message("Druk op 'Rol' om te dobbelen", 505,280)
+    produce_button_message2("Type vraag", 615,152)
     button("roll", 372,357,560,83,(139,131,134),(75,75,75), rollfunc)
 
 def our_roll():
@@ -141,11 +145,7 @@ def typeQroll():
         display_first(FIRST_DICE)
         pygame.display.flip()
         # If the roll is requested, our_roll will execute.
-    if (roll_occur):
-        screen.fill(white)
-        our_roll()
-        pygame.display.flip()
-        clock.tick(30)
+ 
 
 def Select_Catagory():
     global Catergory_selected
@@ -154,11 +154,13 @@ def Select_Catagory():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 Catergory_selected = True
-        screen.blit(cpup, (0 ,0))  
-        button("Entertainment", 372,250,200,80,yellow,gold, None)
-        button("Geschiedenis", 750, 250,200,80,d_blue,blue, None)
-        button("Sport", 750,370,200,80,green,lime, None)
-        button("Techologie", 372,370,200,80,d_red,red, None)
+        screen.blit(cpup, (0 ,0))
+        produce_button_message("Kies een categorie", 555,250)
+        produce_button_message2("Categorie", 620,152)  
+        button("Entertainment", 402,300,180,70,yellow,gold, None)
+        button("Geschiedenis", 730, 300,180,70,d_blue,blue, None)
+        button("Sport", 730,390,180,70,green,lime, None)
+        button("Techologie", 402,390,180,70,d_red,red, None)
         pygame.display.flip()
 
         
@@ -168,6 +170,5 @@ def Select_Catagory():
 typeQroll()
 pygame.quit()
 quit()
-
 
 

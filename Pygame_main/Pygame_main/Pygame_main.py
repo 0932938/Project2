@@ -40,8 +40,7 @@ def message_display(text):
  
     time.sleep(2)
  
-
-#buttons 
+# buttons to click on
 def button(msg,x,y,w,h,ic,ac,action=None):
     Csound = pygame.mixer.Sound("moving cursor.wav")
     mouse = pygame.mouse.get_pos()
@@ -62,13 +61,12 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     screen.blit(textSurf, textRect)
-    
+# To quitgame 
 def quitgame():
     pygame.quit()
     quit()
 
-
-#main menu
+#main menu what players see 
 def game_intro():
 
     intro = True
@@ -79,6 +77,7 @@ def game_intro():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
         bg = pygame.image.load("euromast_wallpaper_v2.jpg")   
         screen.fill(white)
         screen.blit(bg, (0, 0)) 
@@ -92,10 +91,6 @@ def game_intro():
 
         pygame.display.update()
         clock.tick(15)
-
-
-def previous():
-    None 
 
 #insturction page
 def instructies():
@@ -119,9 +114,6 @@ def instructies():
                 if instruction_page == 0:
                     instruction_page = 3
 
-        # Set the screen background
-        screen.fill(black)
-
         if instruction_page == 1:
             # Draw instructions, page 1
             instruc1 = pygame.image.load("instructiepagina1.jpg")
@@ -143,9 +135,9 @@ def instructies():
         button("<",940,40,50,50,black,(80,80,80),None)
         button(">",1170,40,50,50,black,(80,80,80), None)
         button("Back To menu",1000,40,160,50,black,(80,80,80),game_intro)
-
-        # Go ahead and update the screen with what we've drawn.        
-        pygame.display.flip()
+        pygame.display.update()
+     
+        
     
 
 game_intro()
